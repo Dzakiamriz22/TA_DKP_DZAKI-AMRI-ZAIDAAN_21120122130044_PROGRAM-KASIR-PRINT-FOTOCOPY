@@ -173,7 +173,7 @@ buttonHitung = Button(
     font=("Arial", 10),
     command=hitung_harga
 )
-buttonHitung.place(x=250, y=250, width=120, height=30)
+buttonHitung.place(x=250, y=200, width=120, height=30)
 
 
 window.mainloop()
