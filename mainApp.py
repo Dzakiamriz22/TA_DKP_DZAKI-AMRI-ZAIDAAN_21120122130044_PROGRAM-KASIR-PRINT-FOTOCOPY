@@ -115,7 +115,7 @@ labelCopy = Label(
     text="Foto Copy\t",
     font=("Arial", 10)
 )
-labelCopy.place(x=250, y=60)
+labelCopy.place(x=230, y=60)
 
 intCopy = IntVar()
 entryCopy = Entry(
@@ -123,14 +123,14 @@ entryCopy = Entry(
     textvariable=intCopy,
     font=("Arial", 10)
 )
-entryCopy.place(x=250, y=90, width=40, height=20)
+entryCopy.place(x=230, y=90, width=40, height=20)
 
 lembarCopy = Label(
     window,
     text="Lembar\t",
     font=("Arial", 10)
 )
-lembarCopy.place(x=295, y=90)
+lembarCopy.place(x=275, y=90)
 
 ukuranCopy = StringVar(value="Pilih")
 comboboxCopy = ttk.Combobox(
@@ -139,7 +139,7 @@ comboboxCopy = ttk.Combobox(
     textvariable=ukuranCopy,
     state="readonly"
 )
-comboboxCopy.place(x=250, y=120, width=45)
+comboboxCopy.place(x=230, y=120, width=45)
 comboboxCopy["values"]=("A3", "A4", "F4")
 
 ukCopy = Label (
@@ -147,7 +147,7 @@ ukCopy = Label (
     text="Ukuran Kertas",
     font=("Arial", 9)
 )
-ukCopy.place(x=295, y=120)
+ukCopy.place(x=275, y=120)
 
 # Hitung Total Bayar
 def hitung_harga():
@@ -173,7 +173,31 @@ buttonHitung = Button(
     font=("Arial", 10),
     command=hitung_harga
 )
-buttonHitung.place(x=250, y=200, width=120, height=30)
+buttonHitung.place(x=230, y=200, width=120, height=30)
 
+# List Daftar Harga
+price_list_frame = tk.Frame(window)
+price_list_frame.place(x=420, y=40)
+
+price_list_label = tk.Label(price_list_frame, text="Daftar Harga", font=("Arial", 12, "bold"))
+price_list_label.pack(pady=5)
+
+price_list = Listbox(price_list_frame, font=("Arial", 10))
+price_list.pack(fill=BOTH, expand=True)
+
+price_list.insert(END, "Harga Print Hitam Putih:")
+price_list.insert(END, f"A3: Rp {Harga.get_harga_print_hitam_putih('A3')}")
+price_list.insert(END, f"A4: Rp {Harga.get_harga_print_hitam_putih('A4')}")
+price_list.insert(END, f"F4: Rp {Harga.get_harga_print_hitam_putih('F4')}")
+price_list.insert(END, "")
+price_list.insert(END, "Harga Print Berwarna:")
+price_list.insert(END, f"A3: Rp {Harga.get_harga_print_berwarna('A3')}")
+price_list.insert(END, f"A4: Rp {Harga.get_harga_print_berwarna('A4')}")
+price_list.insert(END, f"F4: Rp {Harga.get_harga_print_berwarna('F4')}")
+price_list.insert(END, "")
+price_list.insert(END, "Harga Fotocopy:")
+price_list.insert(END, f"A3: Rp {Harga.get_harga_fotocopy('A3')}")
+price_list.insert(END, f"A4: Rp {Harga.get_harga_fotocopy('A4')}")
+price_list.insert(END, f"F4: Rp {Harga.get_harga_fotocopy('F4')}")
 
 window.mainloop()
