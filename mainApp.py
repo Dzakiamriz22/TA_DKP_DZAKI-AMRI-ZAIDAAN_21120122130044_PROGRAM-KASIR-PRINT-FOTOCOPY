@@ -5,7 +5,8 @@ from daftarHarga import Harga
 
 window = tk.Tk()
 window.title('FAST PRINT')
-window.resizable(0,0)
+window.resizable(0, 0)
+
 
 # Fungsi menengahkan frame di jendela
 def center_window(window, width, height):
@@ -17,6 +18,7 @@ def center_window(window, width, height):
 
     window.geometry(f"{width}x{height}+{x}+{y}")
 
+
 # Mengatur ukuran jendela dan menengahkannya di tengah layar
 window_width = 600
 window_height = 400
@@ -25,7 +27,7 @@ center_window(window, window_width, window_height)
 frame = tk.Frame(window)
 frame.pack()
 
-# Menengahkan label judul di atas frame
+#label judul
 title_label = tk.Label(text="FAST PRINT", font=("Arial", 24))
 title_label.pack(pady=10)
 
@@ -53,16 +55,16 @@ lembarBlackWhite = Label(
 lembarBlackWhite.place(x=75, y=90)
 
 ukuranBlackWhite = StringVar(value="Pilih")
-comboboxBlacWhite = ttk.Combobox(
+comboboxBlackWhite = ttk.Combobox(
     window,
     font=("Arial", 7),
     textvariable=ukuranBlackWhite,
     state="readonly"
 )
-comboboxBlacWhite.place(x=30, y=120, width=45)
-comboboxBlacWhite["values"]=("A3", "A4", "F4")
+comboboxBlackWhite.place(x=30, y=120, width=45)
+comboboxBlackWhite["values"] = ("A3", "A4", "F4")
 
-ukBlackWhite = Label (
+ukBlackWhite = Label(
     window,
     text="Ukuran Kertas",
     font=("Arial", 10)
@@ -95,14 +97,14 @@ lembarWarna.place(x=75, y=175)
 ukuranWarna = StringVar(value="Pilih")
 comboboxWarna = ttk.Combobox(
     window,
-    font=("Arial",  7),
+    font=("Arial", 7),
     textvariable=ukuranWarna,
     state="readonly"
 )
 comboboxWarna.place(x=30, y=205, width=45)
-comboboxWarna["values"]=("A3", "A4", "F4")
+comboboxWarna["values"] = ("A3", "A4", "F4")
 
-ukWarna = Label (
+ukWarna = Label(
     window,
     text="Ukuran Kertas",
     font=("Arial", 10)
@@ -135,19 +137,20 @@ lembarCopy.place(x=275, y=90)
 ukuranCopy = StringVar(value="Pilih")
 comboboxCopy = ttk.Combobox(
     window,
-    font=("Arial",  7),
+    font=("Arial", 7),
     textvariable=ukuranCopy,
     state="readonly"
 )
 comboboxCopy.place(x=230, y=120, width=45)
-comboboxCopy["values"]=("A3", "A4", "F4")
+comboboxCopy["values"] = ("A3", "A4", "F4")
 
-ukCopy = Label (
+ukCopy = Label(
     window,
     text="Ukuran Kertas",
     font=("Arial", 9)
 )
 ukCopy.place(x=275, y=120)
+
 
 # Hitung Total Bayar
 def hitung_harga():
@@ -159,12 +162,14 @@ def hitung_harga():
     ukuran_copy = ukuranCopy.get()
 
     total_bayar = (
-        Harga.get_harga_print_hitam_putih(ukuran_blackWhite) * lembar_blackWhite +
-        Harga.get_harga_print_berwarna(ukuran_warna) * lembar_warna +
-        Harga.get_harga_fotocopy(ukuran_copy) * lembar_copy
+            Harga.get_harga_print_hitam_putih(ukuran_blackWhite) * lembar_blackWhite +
+            Harga.get_harga_print_berwarna(ukuran_warna) * lembar_warna +
+            Harga.get_harga_fotocopy(ukuran_copy) * lembar_copy
     )
 
-    print ("Total Bayar = Rp",total_bayar)
+    intHargaTotal.set(total_bayar)
+    print("Total Bayar = Rp", total_bayar)
+
 
 # Button Hitung Total Bayar
 buttonHitung = Button(
@@ -199,5 +204,21 @@ price_list.insert(END, "Harga Fotocopy:")
 price_list.insert(END, f"A3: Rp {Harga.get_harga_fotocopy('A3')}")
 price_list.insert(END, f"A4: Rp {Harga.get_harga_fotocopy('A4')}")
 price_list.insert(END, f"F4: Rp {Harga.get_harga_fotocopy('F4')}")
+
+#Output Harga Total
+labelHargaTotal = Label(
+    window,
+    text="Harga Total\t",
+    font=("Arial", 10)
+)
+labelHargaTotal.place(x=30, y=270)
+
+intHargaTotal = IntVar()
+OuputHargaTotal = Entry(
+    window,
+    textvariable=intHargaTotal,
+    font=("Arial", 10)
+)
+OuputHargaTotal.place(x=40, y=300, width=60, height=20)
 
 window.mainloop()
