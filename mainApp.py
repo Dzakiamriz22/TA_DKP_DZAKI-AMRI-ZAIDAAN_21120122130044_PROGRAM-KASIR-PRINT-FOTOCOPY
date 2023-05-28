@@ -167,24 +167,34 @@ class Print:
         print("Total Bayar = Rp", total_bayar)
 
     def bayar_percetakan(self):
-        lembar_blackWhite = self.intBlackWhite.get()
-        ukuran_blackWhite = self.ukuranBlackWhite.get()
-        lembar_warna = self.intWarna.get()
-        ukuran_warna = self.ukuranWarna.get()
-        lembar_copy = self.intCopy.get()
-        ukuran_copy = self.ukuranCopy.get()
+        while True:
+            lembar_blackWhite = self.intBlackWhite.get()
+            ukuran_blackWhite = self.ukuranBlackWhite.get()
+            lembar_warna = self.intWarna.get()
+            ukuran_warna = self.ukuranWarna.get()
+            lembar_copy = self.intCopy.get()
+            ukuran_copy = self.ukuranCopy.get()
 
-        total_bayar = (
-            Harga.get_harga_print_hitam_putih(ukuran_blackWhite) * lembar_blackWhite +
-            Harga.get_harga_print_berwarna(ukuran_warna) * lembar_warna +
-            Harga.get_harga_fotocopy(ukuran_copy) * lembar_copy
-        )
+            total_bayar = (
+                Harga.get_harga_print_hitam_putih(ukuran_blackWhite) * lembar_blackWhite +
+                Harga.get_harga_print_berwarna(ukuran_warna) * lembar_warna +
+                Harga.get_harga_fotocopy(ukuran_copy) * lembar_copy
+            )
 
-        jumlah_uang = self.intJumlahUang.get()
-        kembalian = jumlah_uang - total_bayar
+            jumlah_uang = self.intJumlahUang.get()
 
-        self.intKembalian.set(kembalian)
+            if jumlah_uang < total_bayar:
+                messagebox.showerror("Pembayaran Gagal", "Uang yang Anda berikan tidak mencukupi.")
+                self.intJumlahUang.set("")  # Mengosongkan entry jumlah uang
+                return  # Mengulang proses pembayaran
 
+            kembalian = jumlah_uang - total_bayar
+
+            self.intKembalian.set(kembalian)
+
+            print("Kembalian = Rp", kembalian)
+            break
+        
 class PrintHitamPutih(Print):
     def __init__(self, window):
         super().__init__(window)
