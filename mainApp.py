@@ -125,7 +125,7 @@ class Print:
         labelHargaTotal.place(x=30, y=270)
 
         self.intHargaTotal = IntVar()
-        OuputHargaTotal = Entry(self.window, textvariable=self.intHargaTotal, font=("Arial", 10))
+        OuputHargaTotal = Entry(self.window, textvariable=self.intHargaTotal, font=("Arial", 10), state="readonly")
         OuputHargaTotal.place(x=30, y=300, width=60, height=20)
 
         # Input Jumlah Uang yang dibayarkan
@@ -145,7 +145,7 @@ class Print:
         labelKembalian.place(x=430, y=270)
 
         self.intKembalian = IntVar()
-        OuputKembalian = Entry(self.window, textvariable=self.intKembalian, font=("Arial", 10))
+        OuputKembalian = Entry(self.window, textvariable=self.intKembalian, font=("Arial", 10), state="readonly")
         OuputKembalian.place(x=430, y=300, width=60, height=20)
         
     def hitung_harga(self):
