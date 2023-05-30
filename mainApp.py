@@ -147,6 +147,11 @@ class Print:
         self.intKembalian = IntVar()
         OuputKembalian = Entry(self.window, textvariable=self.intKembalian, font=("Arial", 10), state="readonly")
         OuputKembalian.place(x=430, y=300, width=60, height=20)
+
+        # Button Clear
+        buttonClear = Button(self.window, text="Clear", font=("Arial", 10), command=self.clear_input)
+        buttonClear.place(x=30, y=340, width=70, height=30)
+
         
     def hitung_harga(self):
         lembar_blackWhite = self.intBlackWhite.get()
@@ -194,6 +199,21 @@ class Print:
 
             print("Kembalian = Rp", kembalian)
             break
+
+        messagebox.showinfo("Success", "Transaksi berhasil!")
+        
+    def clear_input(self):
+        self.intBlackWhite.set(0)
+        self.ukuranBlackWhite.set("Pilih")
+        self.intWarna.set(0)
+        self.ukuranWarna.set("Pilih")
+        self.intCopy.set(0)
+        self.ukuranCopy.set("Pilih")
+        self.intHargaTotal.set(0)
+        self.intJumlahUang.set(0)
+        self.intKembalian.set(0)
+
+        messagebox.showinfo("Clear", "Berhasil menghapus!")
         
 class PrintHitamPutih(Print):
     def __init__(self, window):
