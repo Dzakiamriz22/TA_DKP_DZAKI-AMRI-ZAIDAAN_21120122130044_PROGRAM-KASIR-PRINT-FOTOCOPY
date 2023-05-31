@@ -198,6 +198,9 @@ class Print:
             self.intKembalian.set(kembalian)
 
             print("Kembalian = Rp", kembalian)
+
+            self.intHargaTotal.set(total_bayar)
+
             break
 
         messagebox.showinfo("Success", "Transaksi berhasil!")
